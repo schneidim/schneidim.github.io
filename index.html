@@ -1,112 +1,990 @@
-# Eyal Schneid - Executive Portfolio Website
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyal Schneid | CEO/CCO Executive Leadership</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-A modern, professional executive portfolio website for Eyal Schneid, Fixer & Builder CEO for technology-led organizations.
+        :root {
+            --dark-bg: #0a0e27;
+            --dark-grey: #1a1f3a;
+            --medium-grey: #2d3e5f;
+            --light-grey: #e8eef5;
+            --accent-blue: #3b82f6;
+            --accent-red: #ef4444;
+            --accent-yellow: #fbbf24;
+            --white: #ffffff;
+        }
 
-## Features
+        html {
+            scroll-behavior: smooth;
+        }
 
-✨ **Modern Design**
-- Dark theme with premium red accents
-- Fully responsive (mobile, tablet, desktop)
-- Smooth animations and transitions
-- Professional typography
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-grey);
+            line-height: 1.6;
+        }
 
-📱 **Sections**
-- Hero with statistics
-- The Work (6 service areas)
-- Operating Thesis (Vector of Growth)
-- Executive Capabilities (6 areas)
-- Selected Impact Themes
-- Executive Profile with bio
-- Speaking & Media
-- Engagement Models (3 options)
-- Contact Form
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid var(--medium-grey);
+        }
 
-## Setup Instructions
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
 
-### 1. Add Your Images
+        nav a {
+            color: var(--light-grey);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-Create an `images` folder and add your portrait photos:
-- `images/eyal-portrait.jpg` - Hero section portrait
-- `images/eyal-portrait2.jpg` - Executive profile section portrait
+        nav a:hover {
+            color: var(--accent-blue);
+        }
 
-### 2. Deploy to GitHub Pages
+        /* Hero Section */
+        .hero {
+            margin-top: 60px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-grey) 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
-This site is ready to be deployed as a GitHub Pages site:
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('image/hero.jpg') no-repeat center/cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
 
-1. Go to your repository Settings
-2. Scroll to "GitHub Pages"
-3. Select your branch (main) as the source
-4. Your site will be live at `https://schneidim.github.io`
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
 
-### 3. Connect Your GoDaddy Domain
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--white);
+            line-height: 1.2;
+        }
 
-1. Go to GoDaddy DNS settings
-2. Add a CNAME record pointing to `schneidim.github.io`
-3. Wait 24-48 hours for DNS to propagate
-4. Add your custom domain in GitHub Pages settings
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
 
-## File Structure
+        .hero .description {
+            font-size: 1.1rem;
+            color: var(--light-grey);
+            max-width: 600px;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
 
-```
-.
-├── index.html          # Main website structure
-├── styles.css          # Styling with CSS variables
-├── script.js           # Interactivity and animations
-├── images/
-│   ├── eyal-portrait.jpg
-│   └── eyal-portrait2.jpg
-└── README.md          # This file
-```
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-blue) 100%);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
 
-## Customization
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+        }
 
-### Change Colors
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
 
-Edit the CSS variables in `styles.css`:
+        .stat {
+            padding: 1.5rem;
+            background: rgba(45, 62, 95, 0.5);
+            border-left: 3px solid var(--accent-yellow);
+            border-radius: 5px;
+        }
 
-```css
-:root {
-    --dark-bg: #0f1419;              /* Main background */
-    --accent-red: #ef4444;           /* Primary accent color */
-    --blue-accent: #3b82f6;          /* Secondary accent */
-    --text-primary: #f5f5f5;         /* Main text */
-    --text-secondary: #b0b0b0;       /* Secondary text */
-}
-```
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+        }
 
-### Update Content
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--light-grey);
+            margin-top: 0.5rem;
+        }
 
-Edit `index.html` to update:
-- Section titles and descriptions
-- Statistics in the hero
-- Work items, capabilities, and engagement models
-- Profile information
-- Contact form fields
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-## Browser Support
+        section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--white);
+            position: relative;
+            display: inline-block;
+        }
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-red);
+        }
 
-## Contact Form
+        /* The Work Section */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
 
-The contact form currently logs submissions to the browser console. For production use, connect it to a backend service like:
-- Formspree
-- Netlify Forms
-- SendGrid
-- Custom backend API
+        .work-card {
+            background: var(--dark-grey);
+            padding: 2rem;
+            border-radius: 5px;
+            border-top: 3px solid var(--accent-blue);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-## Performance
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+        }
 
-- Optimized for fast loading
-- No external dependencies (pure HTML/CSS/JS)
-- Responsive images
-- Smooth scroll behavior
-- Intersection Observer for animations
+        .work-card h3 {
+            font-size: 1.3rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-## License
+        .work-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-red);
+        }
 
-All content © 2025 Eyal Schneid. All rights reserved.
+        .work-card p {
+            color: var(--light-grey);
+            line-height: 1.8;
+        }
+
+        /* Operating Thesis */
+        .thesis-section {
+            background: linear-gradient(135deg, var(--dark-grey) 0%, var(--medium-grey) 100%);
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .thesis-content {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .thesis-item {
+            padding: 1.5rem;
+            background: rgba(10, 14, 39, 0.5);
+            border-radius: 5px;
+            border-left: 3px solid var(--accent-yellow);
+        }
+
+        .thesis-item h3 {
+            color: var(--accent-yellow);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .thesis-item p {
+            color: var(--light-grey);
+        }
+
+        /* Executive Capabilities */
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .capability-card {
+            background: var(--dark-grey);
+            padding: 2rem;
+            border-radius: 5px;
+            border: 1px solid var(--medium-grey);
+            transition: border-color 0.3s ease;
+        }
+
+        .capability-card:hover {
+            border-color: var(--accent-red);
+        }
+
+        .capability-card h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .capability-card p {
+            color: var(--light-grey);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Critical Inflection Points */
+        .inflection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .inflection-item {
+            background: var(--dark-grey);
+            padding: 1.5rem;
+            border-radius: 5px;
+            border-left: 3px solid var(--accent-red);
+        }
+
+        .inflection-item p {
+            color: var(--light-grey);
+        }
+
+        /* Selected Impact Themes */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .impact-item {
+            background: linear-gradient(135deg, var(--dark-grey) 0%, var(--medium-grey) 100%);
+            padding: 2rem;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid var(--medium-grey);
+        }
+
+        .impact-from {
+            color: var(--accent-red);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .impact-arrow {
+            color: var(--accent-yellow);
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .impact-to {
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Executive Profile */
+        .profile-section {
+            background: linear-gradient(135deg, var(--dark-grey) 0%, var(--medium-grey) 100%);
+        }
+
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 100%;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .profile-text h3 {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        .profile-text p {
+            color: var(--light-grey);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .profile-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .profile-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profile-link:hover {
+            color: var(--accent-red);
+        }
+
+        .profile-domains {
+            margin-top: 2rem;
+        }
+
+        .profile-domains p {
+            font-size: 0.9rem;
+            color: var(--light-grey);
+            margin-bottom: 0.5rem;
+        }
+
+        .domains {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .domain-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--accent-blue);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--accent-blue);
+        }
+
+        /* Speaking & Media */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .media-item {
+            background: var(--dark-grey);
+            padding: 1.5rem;
+            border-radius: 5px;
+            border: 1px solid var(--medium-grey);
+        }
+
+        .media-item h3 {
+            color: var(--accent-blue);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .media-item p {
+            color: var(--light-grey);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Engagement Models */
+        .engagement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .engagement-card {
+            background: linear-gradient(135deg, var(--dark-grey) 0%, var(--medium-grey) 100%);
+            padding: 2rem;
+            border-radius: 5px;
+            border-top: 3px solid var(--accent-red);
+            transition: transform 0.3s ease;
+        }
+
+        .engagement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .engagement-card h3 {
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .engagement-card p {
+            color: var(--light-grey);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-grey) 100%);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-intro {
+            font-size: 1.1rem;
+            color: var(--light-grey);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: var(--light-grey);
+            font-size: 0.9rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: var(--dark-grey);
+            border: 1px solid var(--medium-grey);
+            color: var(--white);
+            padding: 0.8rem;
+            border-radius: 5px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-grey);
+            color: var(--light-grey);
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--medium-grey);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .profile-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .work-grid,
+            .capabilities-grid,
+            .engagement-grid,
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#hero">Hero</a></li>
+            <li><a href="#work">The Work</a></li>
+            <li><a href="#thesis">Operating Thesis</a></li>
+            <li><a href="#capabilities">Capabilities</a></li>
+            <li><a href="#impact">Impact Themes</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#media">Speaking & Media</a></li>
+            <li><a href="#engagement">Engagement</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>CEO / CCO Executive Leadership</h1>
+            <p class="subtitle">A Fixer & Builder</p>
+            <p class="description">CEO/CCO for Critical Inflection Points. Brought into technology and healthcare organizations to restore growth, simplify complexity, commercialize innovation, rebuild execution discipline, scale sales and operations, support fundraising, and lead execution hands-on.</p>
+            <p class="description" style="font-size: 1rem; color: var(--accent-yellow);">25+ years leading mission-critical enterprise software, SaaS, and technology-enabled businesses across the US, Europe, and Israel.</p>
+            <a href="#contact" class="cta-button">Start a Discreet Conversation</a>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">$2.5B+</div>
+                    <div class="stat-label">Revenue Generated</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$750M</div>
+                    <div class="stat-label">Enterprise Deal Size Closed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$300M+</div>
+                    <div class="stat-label">P&L Managed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Global Team Members</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Countries Operated</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Companies Turned Around</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Work -->
+    <section id="work">
+        <h2>The Work</h2>
+        <p style="margin-top: 2rem; margin-bottom: 2rem; font-size: 1.1rem; color: var(--accent-blue);">Brought in when complexity requires clarity, execution, and momentum</p>
+
+        <div class="work-grid">
+            <div class="work-card">
+                <h3><span class="work-number">01</span> Restore Stalled or Inconsistent Growth</h3>
+                <p>Diagnose growth blockers, realign commercial strategy, and establish sustainable revenue momentum.</p>
+            </div>
+            <div class="work-card">
+                <h3><span class="work-number">02</span> Simplify Complex Offerings</h3>
+                <p>Translates complex products, platforms, and business models into clear positioning, pricing, messaging, roadmap focus, and aligned go-to-market execution.</p>
+            </div>
+            <div class="work-card">
+                <h3><span class="work-number">03</span> Commercialize Innovation</h3>
+                <p>Transform product capabilities into market-ready offerings with clear value propositions and sales motion.</p>
+            </div>
+            <div class="work-card">
+                <h3><span class="work-number">04</span> Rebuild Execution Discipline</h3>
+                <p>Install operating rhythms, metrics, and leadership cadences that drive consistent results.</p>
+            </div>
+            <div class="work-card">
+                <h3><span class="work-number">05</span> Scale Sales, Operations & Leadership</h3>
+                <p>Build systems that enable growth beyond founder-led selling and ad-hoc execution.</p>
+            </div>
+            <div class="work-card">
+                <h3><span class="work-number">06</span> Align for Fundraising & Investor Confidence</h3>
+                <p>Shape narrative, evidence, and operating posture that withstands scrutiny and inspires commitment.</p>
+            </div>
+            <div class="work-card">
+                <h3><span class="work-number">07</span> Lead from the Front</h3>
+                <p>Step into operating roles where leadership presence and direct involvement accelerate outcomes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operating Thesis -->
+    <section id="thesis" class="thesis-section">
+        <h2>Operating Thesis</h2>
+        <p style="margin-top: 2rem; margin-bottom: 2rem; font-size: 1.1rem; color: var(--accent-yellow);">The Vector of Growth</p>
+        <p style="margin-bottom: 2rem; font-size: 1rem; color: var(--light-grey); line-height: 1.8;">Business transformation behaves like physics. Effort alone does not create movement. Organizations need a clear vector: purpose, direction, force, alignment, and execution. When people understand not only where the company is going, but why it matters, energy becomes focused contribution instead of noise.</p>
+
+        <div class="thesis-content">
+            <div class="thesis-item">
+                <h3>01. Clarify and Simplify the System</h3>
+                <p>A vector needs direction, force, and purpose. The first job is to simplify complexity and understand how value actually moves through the organization - from product to market, from strategy to execution, from customer need to commercial outcome. People commit when they understand the logic, the destination, and why their contribution matters.</p>
+            </div>
+            <div class="thesis-item">
+                <h3>02. Reset Priorities</h3>
+                <p>At inflection points, assumptions must be challenged. The work is to strip away noise and focus only on the few priorities that combine into the strongest vector for visible, near-term wins.</p>
+            </div>
+            <div class="thesis-item">
+                <h3>03. Install Execution Discipline</h3>
+                <p>Execution converts intent into movement. Cadence, accountability, and operating rhythm turn strategy into applied force - making progress measurable, visible, and repeatable.</p>
+            </div>
+            <div class="thesis-item">
+                <h3>04. Invest Only Where Value is Created</h3>
+                <p>Capital, time, and leadership attention should go only toward what commercializes, accelerates revenue, improves adoption, or saves money. Innovation is not valuable until the market can understand it, buy it, and use it.</p>
+            </div>
+            <div class="thesis-item">
+                <h3>05. Build to Scale</h3>
+                <p>Growth becomes sustainable when sales, product, operations, customer delivery, and leadership systems are aligned around a single vector. AI, process, and operating discipline matter only when they improve workflows, decisions, speed, cost structure, or customer outcomes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Capabilities -->
+    <section id="capabilities">
+        <h2>Executive Capabilities</h2>
+        <p style="margin-top: 2rem; margin-bottom: 2rem; font-size: 1.1rem; color: var(--accent-blue);">Depth across commercial and operational dimensions</p>
+
+        <div class="capabilities-grid">
+            <div class="capability-card">
+                <h3>CEO / CCO Leadership</h3>
+                <p>Executive leadership during critical organizational moments requiring experienced, steady hands.</p>
+            </div>
+            <div class="capability-card">
+                <h3>Go-to-Market Rebuilds</h3>
+                <p>Restructure market approach, value proposition, and revenue architecture for sustainable growth.</p>
+            </div>
+            <div class="capability-card">
+                <h3>Sales Operating Systems</h3>
+                <p>Build scalable sales processes, metrics, and team structures that perform consistently.</p>
+            </div>
+            <div class="capability-card">
+                <h3>Healthcare & Enterprise Commercialization</h3>
+                <p>Navigate complex buying cycles, regulatory considerations, and enterprise procurement.</p>
+            </div>
+            <div class="capability-card">
+                <h3>Investor Narrative & Fundraising</h3>
+                <p>Shape compelling investment thesis and maintain clear, confident board-level communication.</p>
+            </div>
+            <div class="capability-card">
+                <h3>Execution & Accountability</h3>
+                <p>Establish rhythms, systems, and cultural norms that drive disciplined execution.</p>
+            </div>
+            <div class="capability-card">
+                <h3>Leadership Alignment</h3>
+                <p>Create clarity across leadership teams and streamline organizational complexity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Critical Inflection Points -->
+    <section>
+        <h2>Critical Inflection Points</h2>
+        <p style="margin-top: 2rem; margin-bottom: 2rem; font-size: 1rem; color: var(--light-grey); line-height: 1.8;">The moments when everything is at stake. Organizations face inflection points where the difference between success and stagnation depends on decisive executive action. These are the situations that require a fixer and builder.</p>
+
+        <div class="inflection-grid">
+            <div class="inflection-item">
+                <p>Post-raise execution pressure</p>
+            </div>
+            <div class="inflection-item">
+                <p>Pre-fundraising positioning and narrative</p>
+            </div>
+            <div class="inflection-item">
+                <p>Stalled or inconsistent revenue growth</p>
+            </div>
+            <div class="inflection-item">
+                <p>Founder-to-executive operating transition</p>
+            </div>
+            <div class="inflection-item">
+                <p>Commercial underperformance despite strong assets</p>
+            </div>
+            <div class="inflection-item">
+                <p>Enterprise sales complexity and long-cycle execution</p>
+            </div>
+            <div class="inflection-item">
+                <p>Healthcare market access and adoption barriers</p>
+            </div>
+            <div class="inflection-item">
+                <p>Product launches and market expansion</p>
+            </div>
+            <div class="inflection-item">
+                <p>Strategy that has not become execution</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selected Impact Themes -->
+    <section id="impact">
+        <h2>Selected Impact Themes</h2>
+        <p style="margin-top: 2rem; margin-bottom: 2rem; font-size: 1.1rem; color: var(--accent-yellow);">The transformation that matters</p>
+
+        <div class="impact-grid">
+            <div class="impact-item">
+                <div class="impact-from">From</div>
+                <h3>Complexity</h3>
+                <div class="impact-arrow">→</div>
+                <div class="impact-to">Clarity</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-from">From</div>
+                <h3>Innovation</h3>
+                <div class="impact-arrow">→</div>
+                <div class="impact-to">Revenue</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-from">From</div>
+                <h3>Activity</h3>
+                <div class="impact-arrow">→</div>
+                <div class="impact-to">Execution Discipline</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-from">From</div>
+                <h3>Pipeline</h3>
+                <div class="impact-arrow">→</div>
+                <div class="impact-to">Repeatable Commercial Motion</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-from">From</div>
+                <h3>Fragmented Teams</h3>
+                <div class="impact-arrow">→</div>
+                <div class="impact-to">Aligned Leadership Cadence</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-from">From</div>
+                <h3>Investor Skepticism</h3>
+                <div class="impact-arrow">→</div>
+                <div class="impact-to">Operating Confidence</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Profile -->
+    <section id="profile" class="profile-section">
+        <h2>Executive Profile</h2>
+        <div class="profile-content">
+            <div class="profile-image">
+                <img src="image/profile.jpg" alt="Eyal Schneid">
+            </div>
+            <div class="profile-text">
+                <h3>Eyal Schneid</h3>
+                <p>Eyal Schneid is a Fixer & Builder CEO for technology-led organizations at critical inflection points, combining enterprise-scale leadership, commercial transformation, and hands-on execution to challenge assumptions, simplify complexity, and build momentum.</p>
+                <p>He brings 25+ years of international leadership across enterprise software, SaaS, digital transformation, and regulated or complex B2B markets, with sector experience spanning healthcare technology, Telecom, InsurTech, EduTech, and Training. His experience includes managing large global teams, leading business units with over $300M in P&L responsibility, and closing enterprise contracts of up to $750M. His work spans large-scale corporate environments, complex enterprise markets, and growth-stage companies, enabling him to operate with enterprise discipline while moving with entrepreneurial urgency.</p>
+                <p>Eyal is known for challenging default assumptions, simplifying the business layer, and forcing clarity where organizations have normalized complexity. He simplifies complex offerings and technologies into clear commercial strategy, aligning product, sales, marketing, customer operations, and investor narrative around a focused growth vector. His leadership combines strategic judgment with hands-on execution across commercialization, revenue growth, fundraising readiness, transformation, and scalable operations.</p>
+                <p>Under pressure, he quickly diagnoses organizational and commercial obstacles, challenges assumptions, focuses priorities, and builds execution momentum. He helps leadership teams move from ambiguity to action by aligning people around the why, installing operating discipline, and driving measurable outcomes with urgency and accountability.</p>
+
+                <div class="profile-links">
+                    <a href="#" class="profile-link">View full profile on LinkedIn →</a>
+                </div>
+
+                <div class="profile-domains">
+                    <p><strong>Primary Domains:</strong></p>
+                    <div class="domains">
+                        <span class="domain-tag">Technology</span>
+                        <span class="domain-tag">Healthcare</span>
+                        <span class="domain-tag">SaaS</span>
+                        <span class="domain-tag">Telecom</span>
+                        <span class="domain-tag">EduTech</span>
+                        <span class="domain-tag">Enterprise</span>
+                        <span class="domain-tag">Growth Stage</span>
+                        <span class="domain-tag">Startups</span>
+                        <span class="domain-tag">Transformation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speaking & Media -->
+    <section id="media">
+        <h2>Speaking & Media</h2>
+
+        <div class="media-grid">
+            <div class="media-item">
+                <h3>GIHF-AI Berlin</h3>
+                <p>Speaking and thought leadership on healthcare AI, transformation, and operational application.</p>
+            </div>
+            <div class="media-item">
+                <h3>Rutgers University</h3>
+                <p>Academic and executive engagement around technology, healthcare, and leadership.</p>
+            </div>
+            <div class="media-item">
+                <h3>TSX / IPO Milestone</h3>
+                <p>Public-market and growth-company leadership experience connected to enterprise value creation.</p>
+            </div>
+            <div class="media-item">
+                <h3>Healthcare AI Speaking</h3>
+                <p>Perspectives on AI as an operational multiplier in clinical, commercial, and enterprise environments.</p>
+            </div>
+            <div class="media-item">
+                <h3>Early E-Learning Innovation</h3>
+                <p>Early innovation work at the intersection of digital learning, technology adoption, and scalable knowledge systems.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engagement Models -->
+    <section id="engagement">
+        <h2>Engagement Models</h2>
+        <p style="margin-top: 2rem; margin-bottom: 2rem; font-size: 1.1rem; color: var(--accent-yellow);">Three ways to work together</p>
+        <p style="margin-bottom: 2rem; font-size: 1rem; color: var(--light-grey);">Engagement structure depends on mandate, scope, timing, fit, and current commitments</p>
+
+        <div class="engagement-grid">
+            <div class="engagement-card">
+                <h3>Long-Term Executive Leadership</h3>
+                <p>Full-time leadership for the right mandate. For companies seeking a long-term executive leader to drive commercialization, transformation, market expansion, fundraising readiness, scalable growth, or operational discipline.</p>
+            </div>
+            <div class="engagement-card">
+                <h3>Fractional Executive Leadership</h3>
+                <p>Senior operating leadership without a permanent appointment. For organizations that need an experienced CEO, CCO, or commercial operating leadership during periods of transition, growth acceleration, transformation, or execution pressure.</p>
+            </div>
+            <div class="engagement-card">
+                <h3>Focused Strategic Mandates</h3>
+                <p>Short-term executive leadership for defined high-impact assignments. For situations requiring concentrated senior hands-on leadership around a specific business challenge: product launch, new territory expansion, go-to-market reset, revenue acceleration, due diligence, post-raise execution, market entry, board/investor readiness, or operational scale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+        <h2>Contact</h2>
+        <div class="contact-content">
+            <p class="contact-intro">For board, investor, or executive inquiries regarding growth recovery, commercialization, operating transformation, or leadership execution.</p>
+
+            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="organization">Organization</label>
+                    <input type="text" id="organization" name="organization">
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <input type="text" id="role" name="role">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="context">Context</label>
+                    <textarea id="context" name="context" placeholder="Start a discreet conversation"></textarea>
+                </div>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Eyal Schneid. Executive Leadership for Critical Inflection Points.</p>
+    </footer>
+</body>
+</html>
